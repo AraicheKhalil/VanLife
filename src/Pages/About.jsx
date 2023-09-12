@@ -1,10 +1,8 @@
-import Footer from "../components/Footer"
-import Header from "../components/Header"
+
 
 function About() {
   return (
     <div className="About">
-      <Header />
       <section>
         <div className="Landing">
             <img src="./imgs/image 54.png" className="object-cover w-full"/>
@@ -25,7 +23,7 @@ function About() {
             <button type="button" className="rounded-lg bg-gray-900 text-sm not-italic font-bold leading-6 text-white py-3 px-6 w-fit">Explore our vans</button>
         </div>
       </section>
-      <Footer />
+       
     </div>
   )
 }
