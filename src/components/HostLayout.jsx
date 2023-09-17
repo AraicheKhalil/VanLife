@@ -1,27 +1,37 @@
-import { Link, Outlet } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
+
 
 function HostLayout() {
+    const styles = {
+        textDecoration : "underline",
+        fontWeight: 700,
+    }
   return (
     <>
-        <nav className="bg-gray-50 dark:bg-gray-700">
-            <div className="max-w-screen-xl px-4 py-3 mx-auto">
-                <div className="flex items-center">
-                    <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
-                        <li>
-                            <Link to="/host" className="text-gray-900 dark:text-white hover:underline" aria-current="page">Dashboard</Link>
-                        </li>
-                        <li>
-                            <Link to="/host/income" className="text-gray-900 dark:text-white hover:underline">Income</Link>
-                        </li>
-                        <li>
-                            <Link to="/host/vans" className="text-gray-900 dark:text-white hover:underline">Vans</Link>
-                        </li>
-                        <li>
-                            <Link to="/host/reviews" className="text-gray-900 dark:text-white hover:underline">Reviews</Link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <nav className="bg-orange-100 px-7">
+            <ul className="flex py-6 ">
+                <li className="mr-4">
+                    <NavLink 
+                        to='.' 
+                        end
+                        style={({isActive}) => isActive ? styles : null}
+                        className='text-gray-700 text-lg not-italic font-medium leading-5'>Dashboard</NavLink></li>
+                <li className="mr-4">
+                    <NavLink 
+                        to='vans' 
+                        style={({isActive}) => isActive ? styles : null}
+                        className='text-gray-700 text-lg not-italic font-medium leading-5'>Vans</NavLink></li>
+                <li className="mr-4">
+                    <NavLink 
+                        to='income' 
+                        style={({isActive}) => isActive ? styles : null}
+                        className='text-gray-700 text-lg not-italic font-medium leading-5'>Income</NavLink></li>
+                <li className="mr-4">
+                    <NavLink 
+                        to='reviews' 
+                        style={({isActive}) => isActive ? styles : null}
+                        className='text-gray-700 text-lg not-italic font-medium leading-5'>Reviews</NavLink></li>
+            </ul>
         </nav>
         <Outlet />
     </>

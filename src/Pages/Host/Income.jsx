@@ -1,9 +1,9 @@
 
 function Income() {
   return (
-    <>
-      <div>hi income</div>
-    </>
+    <div>
+      hi income
+    </div>
   )
 }
 

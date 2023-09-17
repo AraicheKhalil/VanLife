@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+ul li{
+    list-style: none;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+    background-color: #F6F4EB;
+}
+
+button.simple{
+    background: #E17654;
+    color: #FFEAD0;
+}
+button.rugged{
+    background: #115E59;
+    color: #FFEAD0;
+}
+button.luxury{
+    background: #161616;
+    color: #FFEAD0;
+}

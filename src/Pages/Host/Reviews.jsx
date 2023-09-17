@@ -1,9 +1,9 @@
 
 function Reviews() {
   return (
-    <>
-    dsqffffff
-    </>
+    <div>
+      hi Reviews
+    </div>
   )
 }
 

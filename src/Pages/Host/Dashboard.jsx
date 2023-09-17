@@ -1,9 +1,10 @@
 
-
 function Dashboard() {
   return (
     <>
-      <div>hi theter</div>
+        <div>
+            hi Dashboard
+        </div>
     </>
   )
 }

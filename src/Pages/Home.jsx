@@ -1,22 +1,22 @@
+import { Link } from "react-router-dom"
 
-function VanLife() {
+function Home() {
 
-    return (  
-        <div className="VanLife">
-            <section className="Landing relative flex">
-                <img className="Img w-full" src="./imgs/image 53.png" />
-                <div className="main-title absolute self-center m-14">
-                    
-                    <h1 className="title text-4xl not-italic font-extrabold text-white text-center max-w-[500px] my-4">You got the travel plans, we got the travel vans.</h1>
-                    <p className="desc text-center max-w-[494.33px] text-[#fff] text-base not-italic font-medium leading-6 my-4">Add adventure to your life by joining the #vanlife movement. Rent the perfect van to make your perfect road trip.</p>
-                    <button type="button" className="my-4 focus:outline-none w-1/2 text-white bg-orange-500 font-medium  rounded-md text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">Find your van</button>
-
-                </div>
-            </section>     
-             
-
+  return (
+    <div className="Home">
+      <section className="relative" >
+        <img src="./imgs/image 53.png" className="" />
+        <div className="info absolute top-1/2 -translate-y-1/2 mx-6">
+          <h1 className="text-[#fff] text-3xl not-italic font-extrabold mb-4">You got the travel plans, we got the travel vans.</h1>
+          <p className="text-[#fff] text-sm not-italic font-normal leading-6 mb-6">Add adventure to your life by joining the #vanlife movement. Rent the perfect van to make your perfect road trip.</p>
+          <button className="text-center text-sm not-italic font-bold leading-8 py-1 w-full rounded bg-orange-500">
+            <Link to='vans'>Find your van</Link>
+          </button>
         </div>
-    )
+      </section>
+    </div>
+  )
+
 }
 
-export default VanLife
+export default Home
