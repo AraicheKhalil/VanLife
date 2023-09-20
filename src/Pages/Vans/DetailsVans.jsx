@@ -1,12 +1,16 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams , useLocation} from "react-router-dom"
 import { useEffect, useState } from "react"
+
+
 
 function DetailsVans() {
 
   const [vans,setVans] = useState(null)
-
   const params = useParams()
-  console.log(params)
+  const Location = useLocation()
+
+  const search = Location.state?.search || ""
+  const backToType = Location.state?.search.slice(5)
 
   useEffect(() => {
     fetch(`/api/vans/${params.id}`).
@@ -17,7 +21,7 @@ function DetailsVans() {
   return (
     <>
       <section className="py-8 px-5">
-        <Link className="underline" relative="path" to='..'>Back to all vans</Link>
+        <Link className="underline" relative="path" to={`..?${search}`} >&#8592;  Back to {search ? backToType : "All"} vans</Link>
         {vans ?
         <div className="details mt-8">
           <div>

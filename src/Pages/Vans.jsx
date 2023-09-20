@@ -1,18 +1,29 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useSearchParams , useLoaderData } from "react-router-dom"
+import {getVans} from '../api' ; 
 import '../style.css'
 
+export function Loader(){
+    return getVans()
+}
+
 function Vans() {
+    const [searchParams,setSearchParams] = useSearchParams()
+    const typeFilter = searchParams.get('type')
+    const vans = useLoaderData()
 
-    const [vans,setVans] = useState([])
 
-    useEffect(() => {
-        fetch('./api/vans').then(
-            data => data.json()
-        ).then(data => setVans(data.vans))
-    },[])
+    const vansType = typeFilter ? vans.filter(van => van.type == typeFilter ) : vans
 
-    console.log(vans)
+    function handlefiltering(key,value){
+        setSearchParams(prevSP => {
+            if(value == null){
+                prevSP.delete(key)
+            }else{
+                prevSP.set(key,value)
+            }
+            return prevSP
+        })
+    }
 
   return (
     <div className="Vans bg-orange-100">
@@ -20,23 +31,30 @@ function Vans() {
         <h1 className="mx-4 mb-4 text-gray-900 text-3xl not-italic font-bold leading-8">Explore our van options</h1>
         <ul className="flex mx-4 mb-6">
             <li>
-                <button className="rounded  bg-orange-200 py-1 px-2  mr-4 text-gray-700 text-center text-base not-italic font-medium leading-6">Simple</button>
+                <button  onClick={() => handlefiltering("type" , "simple")}
+                className={` ${typeFilter == "simple" ? "bg-[#E17654] text-orange-200" : 'bg-orange-200 text-gray-700'}  rounded hover:  py-1 px-2  mr-4  text-center text-base not-italic font-medium leading-6`}>Simple</button>
             </li>
             <li>
-                <button className="rounded  bg-orange-200 py-1 px-2  mr-4 text-gray-700 text-center text-base not-italic font-medium leading-6">Luxury</button>
+                <button onClick={() => handlefiltering("type" , "luxury")}
+                className={`${typeFilter == "luxury" ? "bg-[#161616] text-orange-200" : "bg-orange-200  text-gray-700"} rounded   py-1 px-2  mr-4  text-center text-base not-italic font-medium leading-6 `}>Luxury</button>
             </li>
             <li>
-                <button className="rounded  bg-orange-200 py-1 px-2  mr-4 text-gray-700 text-center text-base not-italic font-medium leading-6">Rugged</button>
+                <button  onClick={() => handlefiltering("type" , "rugged")}
+                className={`${typeFilter == "rugged" ? "bg-[#115E59] text-orange-200 " : "bg-orange-200 text-gray-700" } rounded hover:  py-1 px-2  mr-4  text-center text-base not-italic font-medium leading-6`}>Rugged</button>
             </li>
+            {typeFilter &&
             <li >
-                <button className="underline  py-1 px-2  mr-4 text-gray-700 text-center text-base not-italic font-medium leading-6">Clear filters</button>
-            </li>
+            <button onClick={() => handlefiltering("type" , null)} className={`underline  py-1 px-2  mr-4  text-center text-base not-italic font-medium leading-6`}>Clear filters</button>
+            </li> }
         </ul>
         <div className="flex flex-wrap justify-center">
-            {vans.map(van => {
+            {vansType.map(van => {
                 return (
                     <div key={van.id} className="m-3">
-                       <Link to={`${van.id}`}>
+                       <Link 
+                        to={`${van.id}`}
+                        state={{search : searchParams.toString()}} 
+                        >
                             <div className="w-[220px]">
                                 <img src={van.imageUrl} className="rounded-md"/>
                             </div>

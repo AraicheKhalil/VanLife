@@ -7,9 +7,7 @@ import { Link } from "react-router-dom"
 function HostVansDetails() {
 
   const [currentVan , setCurrentVan] = useState(null)
-
   const params = useParams()
-  console.log(params)
 
   useEffect(() => {
     fetch(`/api/host/vans/${params.id}`).then(
@@ -25,7 +23,6 @@ const styles = {
   color : "black"
 }
 
-console.log(currentVan)
 
   return (
     <>
