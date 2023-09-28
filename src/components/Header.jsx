@@ -1,4 +1,8 @@
 import { NavLink } from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+const element = <FontAwesomeIcon icon={faUser} />
+import '../style.css'
 
 function Header() {
 
@@ -13,25 +17,32 @@ function Header() {
       </div>
       <nav className="">
         <ul className="flex ">
-            <li className="my-2 ml-3">
+            <li className="my-2 ml-5">
                 <NavLink 
                     to='host'
                     style={({isActive}) => isActive ? styles : null} 
                     className="text-gray-700 text-right text-base not-italic font-semibold leading-5">Host
                 </NavLink>
             </li>
-            <li className="my-2 ml-3">
+            <li className="my-2 ml-5">
                 <NavLink 
                     to='about' 
                     style={({isActive}) => isActive ? styles : null}
                     className="text-gray-700 text-right text-base not-italic font-semibold leading-5">About
                 </NavLink>
             </li>
-            <li className="my-2 ml-3">
+            <li className="my-2 ml-5">
                 <NavLink 
                     to='vans' 
                     style={({isActive}) => isActive ? styles : null}
                     className="text-gray-700 text-right text-base not-italic font-semibold leading-5">Vans
+                </NavLink>
+            </li>
+            <li className="my-2 ml-5">
+                <NavLink 
+                    to='login' 
+                    // style={({isActive}) => isActive ? styles : null}
+                    className="text-gray-700 text-right text-base not-italic font-semibold leading-5">{element}
                 </NavLink>
             </li>
         </ul>

@@ -1,27 +1,27 @@
-import { Link, useParams , useLocation} from "react-router-dom"
-import { useEffect, useState } from "react"
+import { Link , useLocation, useLoaderData} from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import { getVans } from "../../api"
+const leftBack = <FontAwesomeIcon icon={faArrowLeft} />
 
-
+export function Loader({params}){
+  return getVans(params.id)
+}
 
 function DetailsVans() {
 
-  const [vans,setVans] = useState(null)
-  const params = useParams()
+  const vans = useLoaderData()
   const Location = useLocation()
 
   const search = Location.state?.search || ""
   const backToType = Location.state?.search.slice(5)
 
-  useEffect(() => {
-    fetch(`/api/vans/${params.id}`).
-    then(data => data.json()).
-    then(data => setVans(data.vans))
-  },[params])
+
 
   return (
     <>
       <section className="py-8 px-5">
-        <Link className="underline" relative="path" to={`..?${search}`} >&#8592;  Back to {search ? backToType : "All"} vans</Link>
+        <Link className="" relative="path" to={`..?${search}`} > {leftBack} <span className="ml-4 underline">Back to {search ? backToType : "All"} vans</span></Link>
         {vans ?
         <div className="details mt-8">
           <div>
